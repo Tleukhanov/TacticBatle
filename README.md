@@ -287,3 +287,8 @@ The `Dockerfile` supports two modes:
 Made with Python and Pygame
 
 </div>
+
+---
+
+**Build. Learn. Understand.**
+© Ералы Тлеуханов · [tleukhanov.me](https://tleukhanov.me)
