@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TacticBatle — Napoleonic Tactical Battle Simulator</title>
+  <meta name="description" content="TacticBatle: A* pathfinding, type-advantage combat, village capture, world map with diplomacy, modular AI. Python 3 + Pygame." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark">TB</span>
+        <span class="brand__name">TacticBatle</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#ai">AI Topics</a>
+        <a href="#stack">Stack</a>
+        <a href="#run">Run</a>
+        <a href="#demo">Demo</a>
+        <a class="btn btn--ghost" href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="eyebrow">Python 3 + Pygame-CE</span>
+          <h1>Napoleonic tactical battles,<br/>driven by real AI.</h1>
+          <p class="lead">
+            A top-down 2D RTS with A* pathfinding, type-advantage combat, village capture,
+            a world-map strategy layer with diplomacy, and a modular AI you can swap for an ML agent.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn--secondary" href="#run">Quick Start</a>
+          </div>
+          <div class="hero__stats">
+            <div><strong>924</strong><span>tests passing</span></div>
+            <div><strong>3</strong><span>AI syllabus topics</span></div>
+            <div><strong>50</strong><span>world-map provinces</span></div>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="battlefield">
+            <div class="unit unit--infantry"></div>
+            <div class="unit unit--cavalry"></div>
+            <div class="unit unit--archer"></div>
+            <div class="village"></div>
+            <div class="mountain"></div>
+            <div class="river"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section__title">Features</h2>
+        <p class="section__sub">Everything you see runs locally. No cloud, no API keys.</p>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>Tactical Combat</h3>
+            <p>3 unit types (Infantry, Cavalry, Archers) with a type-advantage matrix, soldier counts, combat range and collision.</p>
+          </article>
+          <article class="card">
+            <h3>Village Economy</h3>
+            <p>Capture villages for food income, recruit free infantry every 3 minutes, supply capped at 1000.</p>
+          </article>
+          <article class="card">
+            <h3>A* Pathfinding</h3>
+            <p>Terrain-aware routing around mountains and rivers, with bridge crossings and diagonal moves.</p>
+          </article>
+          <article class="card">
+            <h3>World Map</h3>
+            <p>3 nations, 50 irregular provinces, 6 generals, diplomacy (War/Neutral/Friendly/Alliance), AI opponents.</p>
+          </article>
+          <article class="card">
+            <h3>Modular AI</h3>
+            <p>State machine with tactical grouping, flanking, hold position, retreat logic and village capture.</p>
+          </article>
+          <article class="card">
+            <h3>Docker Ready</h3>
+            <p>GUI via X11 forwarding or headless mode for CI and testing on any platform.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">AI Topics (3 syllabus weeks)</h2>
+        <p class="section__sub">Implemented as real code, not a wrapped API.</p>
+        <div class="grid grid--3">
+          <article class="card card--dark">
+            <span class="badge">Week 1</span>
+            <h3>Intelligent Agents</h3>
+            <p>Finite-state-machine agent with states Idle / Group Up / Move / Hold / Attack / Flank / Capture / Retreat, reacting to an environment of enemies, allies and villages.</p>
+          </article>
+          <article class="card card--dark">
+            <span class="badge">Week 2</span>
+            <h3>Uninformed Search &amp; A*</h3>
+            <p>A* pathfinding with terrain cost weighting, diagonal movement, mountain avoidance and bridge crossings.</p>
+          </article>
+          <article class="card card--dark">
+            <span class="badge">Week 4</span>
+            <h3>Adversarial Search</h3>
+            <p>Minimax with Alpha-Beta pruning selects the best enemy target, assuming the enemy picks the best counter-attack.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container">
+        <h2 class="section__title">Tech Stack</h2>
+        <div class="stack">
+          <span>Python 3.10+</span>
+          <span>Pygame-CE 2.5</span>
+          <span>A* pathfinding</span>
+          <span>Finite State Machine</span>
+          <span>Minimax / Alpha-Beta</span>
+          <span>pytest (924 tests)</span>
+          <span>Docker + Compose</span>
+          <span>GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="run" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Quick Start</h2>
+        <pre class="code"><code>git clone https://github.com/Tleukhanov/TacticBatle.git
+cd TacticBatle
+pip install pygame-ce
+python main.py</code></pre>
+        <p class="section__sub">Docker (headless) available via <code>docker compose --profile headless up --build</code>.</p>
+      </div>
+    </section>
+
+    <section id="demo" class="section">
+      <div class="container">
+        <h2 class="section__title">Demo Video</h2>
+        <p class="section__sub">2–3 minute gameplay walkthrough. Recording guide in the repository.</p>
+        <div class="video">
+          <div class="video__placeholder">
+            <span>▶</span>
+            <p>Drop your YouTube/Vimeo link here</p>
+            <code>&lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Testing</h2>
+        <p class="section__sub">924 tests passing across unit, integration and edge cases.</p>
+        <pre class="code"><code>python -m pytest -v</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© Yeraly Tleukhanov · TacticBatle</span>
+      <a href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
