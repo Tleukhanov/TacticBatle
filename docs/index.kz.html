@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TacticBatle — Наполеондық тактикалық шайқас симуляторы</title>
+  <meta name="description" content="TacticBatle: A* іздеу, типтік артықшылық шайқасы, ауылды басып алу, дипломатиясы бар әлем картасы, модульді ИИ. Python 3 + Pygame." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark">TB</span>
+        <span class="brand__name">TacticBatle</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">Мүмкіндіктер</a>
+        <a href="#ai">ИИ тақырыптары</a>
+        <a href="#stack">Стек</a>
+        <a href="#run">Іске қосу</a>
+        <a href="#demo">Демо</a>
+        <a class="btn btn--ghost" href="index.html">EN</a>
+        <a class="btn btn--ghost" href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="eyebrow">Python 3 + Pygame-CE</span>
+          <h1>Настоящий ИИ басқаратын<br/>наполеондық тактикалық шайқастар.</h1>
+          <p class="lead">
+            A* іздеу, типтік артықшылық шайқасы, ауылды басып алу, дипломатиясы бар
+            әлем картасы және ML-агентпен ауыстыруға болатын модульді ИИ бар 2D RTS.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">GitHub-та ашу</a>
+            <a class="btn btn--secondary" href="#run">Жылдам бастау</a>
+          </div>
+          <div class="hero__stats">
+            <div><strong>924</strong><span>тест өтті</span></div>
+            <div><strong>3</strong><span>ИИ тақырыбы</span></div>
+            <div><strong>50</strong><span>әлем картасы провинциясы</span></div>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="battlefield">
+            <div class="unit unit--infantry"></div>
+            <div class="unit unit--cavalry"></div>
+            <div class="unit unit--archer"></div>
+            <div class="village"></div>
+            <div class="mountain"></div>
+            <div class="river"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section__title">Мүмкіндіктер</h2>
+        <p class="section__sub">Барлығы жергілікті жұмыс істейді. Бұлт, API кілттері жоқ.</p>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>Тактикалық шайқас</h3>
+            <p>3 юнит түрі (Жаяу әскер, Атты әскер, Садақшылар), типтік артықшылық матрицасы, сарбаз саны, шабуыл қашықтығы және соқтығысу.</p>
+          </article>
+          <article class="card">
+            <h3>Ауыл экономикасы</h3>
+            <p>Ауылды басып алып тамақ өндіріңіз, әр 3 минутта тегін жаяу әскер шақырыңыз, жабдық шегі 1000.</p>
+          </article>
+          <article class="card">
+            <h3>A* іздеу</h3>
+            <p>Тау мен өзенді айналып өтетін, көпір арқылы өтетін ландшафтқа бейімделген маршрут.</p>
+          </article>
+          <article class="card">
+            <h3>Әлем картасы</h3>
+            <p>3 ұлт, 50 провинция, 6 генерал, дипломатия (Соғыс/Бейтарап/Достық/Одақ), ИИ қарсыластар.</p>
+          </article>
+          <article class="card">
+            <h3>Модульді ИИ</h3>
+            <p>Тактикалық топтау, қапталдау, орында тұру, шегіну және ауылды басып алу логикасы бар күй машинасы.</p>
+          </article>
+          <article class="card">
+            <h3>Docker дайын</h3>
+            <p>Кез келген платформада X11 forward немесе headless режим арқылы GUI.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">ИИ тақырыптары (3 силлабус аптасы)</h2>
+        <p class="section__sub">Дайын API емес, нақты код арқылы іске асырылған.</p>
+        <div class="grid grid--3">
+          <article class="card card--dark">
+            <span class="badge">1-апта</span>
+            <h3>Интеллектуалды агенттер</h3>
+            <p>Жау, одақтас және ауыл ортасына реакция беретін Idle / Group Up / Move / Hold / Attack / Flank / Capture / Retreat күйлері бар күй машинасы.</p>
+          </article>
+          <article class="card card--dark">
+            <span class="badge">2-апта</span>
+            <h3>Іздеу және A*</h3>
+            <p>Ландшафт құнын ескеретін, диагональ қозғалыс, тауды айналып өту және көпір арқылы өту бар A* іздеу.</p>
+          </article>
+          <article class="card card--dark">
+            <span class="badge">4-апта</span>
+            <h3>Қарсыластық іздеу</h3>
+            <p>Қарсылас ең жақсы қарсы шабуылды таңдайды деп болжап, ең жақсы жау мақсатын таңдайтын Alpha-Beta қысқартуы бар Minimax.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container">
+        <h2 class="section__title">Технологиялық стек</h2>
+        <div class="stack">
+          <span>Python 3.10+</span>
+          <span>Pygame-CE 2.5</span>
+          <span>A* іздеу</span>
+          <span>Күй машинасы</span>
+          <span>Minimax / Alpha-Beta</span>
+          <span>pytest (924 тест)</span>
+          <span>Docker + Compose</span>
+          <span>GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="run" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Жылдам бастау</h2>
+        <pre class="code"><code>git clone https://github.com/Tleukhanov/TacticBatle.git
+cd TacticBatle
+pip install pygame-ce
+python main.py</code></pre>
+        <p class="section__sub"><code>docker compose --profile headless up --build</code> арқылы Docker (headless) қолжетімді.</p>
+      </div>
+    </section>
+
+    <section id="demo" class="section">
+      <div class="container">
+        <h2 class="section__title">Демо видео</h2>
+        <p class="section__sub">2–3 минуттық геймплей. Репозиторийде жазу нұсқаулығы бар.</p>
+        <div class="video">
+          <div class="video__placeholder">
+            <span>▶</span>
+            <p>YouTube/Vimeo сілтемесін осында қойыңыз</p>
+            <code>&lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Тестілеу</h2>
+        <p class="section__sub">Юнит, интеграция және шеткі жағдайлар бойынша 924 тест өтті.</p>
+        <pre class="code"><code>python -m pytest -v</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© Yeraly Tleukhanov · TacticBatle</span>
+      <a href="https://github.com/Tleukhanov/TacticBatle" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
