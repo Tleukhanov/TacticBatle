@@ -19,10 +19,13 @@
       </a>
       <nav class="nav">
         <a href="#features">Features</a>
+        <a href="#units">Units</a>
         <a href="#campaigns">Campaigns</a>
         <a href="#controls">Controls</a>
         <a href="#ai">AI Topics</a>
+        <a href="#aidetail">AI Deep Dive</a>
         <a href="#architecture">Architecture</a>
+        <a href="#testingdetail">Testing</a>
         <a href="#stack">Stack</a>
         <a href="#run">Run</a>
         <a href="#demo">Demo</a>
@@ -173,6 +176,63 @@ diplomacy.py     WAR/NEUTRAL/FRIENDLY/ALLIANCE</code></pre>
           <div class="card"><p>World map view (placeholder)</p></div>
           <div class="card"><p>Village capture (placeholder)</p></div>
         </div>
+      </div>
+    </section>
+
+
+    <section id="units" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Unit Stats</h2>
+        <p class="section__sub">Three unit types with a type-advantage matrix.</p>
+        <pre class="code"><code>Type        HP   Speed  Damage  Range  Advantage
+Infantry    500  1.8    8       1.2    balanced
+Cavalry     350  3.2    14      1.4    beats Archers (1.5x)
+Archer      280  1.5    6       5.0    fires from range</code></pre>
+      </div>
+    </section>
+
+    <section id="aidetail" class="section">
+      <div class="container">
+        <h2 class="section__title">AI Deep Dive</h2>
+        <p class="section__sub">How each syllabus topic is implemented in code.</p>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>A* Pathfinding</h3>
+            <p>Grid-based A* with terrain cost weighting, diagonal moves, mountain avoidance and bridge crossings. Respects unit collision via push-apart.</p>
+          </article>
+          <article class="card">
+            <h3>Finite State Machine</h3>
+            <p>States: Idle, Group Up, Move, Hold, Attack, Flank, Capture, Retreat. Infantry groups before attacking, cavalry flanks, archers hold position.</p>
+          </article>
+          <article class="card">
+            <h3>Minimax + Alpha-Beta</h3>
+            <p>Adversarial target selection: AI assumes enemy picks best counter-attack. Alpha-Beta prunes branches where beta &lt;= alpha.</p>
+          </article>
+          <article class="card">
+            <h3>Village Capture</h3>
+            <p>Move a unit onto a village to capture. AI prioritizes neutral/enemy villages for economic advantage.</p>
+          </article>
+          <article class="card">
+            <h3>Retreat Logic</h3>
+            <p>Units flee below 35% health with a finite allowance, then re-engage. Prevents permanent fleeing and endless battles.</p>
+          </article>
+          <article class="card">
+            <h3>World Map AI</h3>
+            <p>Enemy generals move and attack autonomously each turn. Auto-capture neutrals, auto-battle on enemy territory.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testingdetail" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Testing Breakdown</h2>
+        <p class="section__sub">924 tests across unit, integration and edge cases.</p>
+        <pre class="code"><code>TestConfig, TestTacticalMap, TestVillages, TestPathfinding,
+TestUnit, TestUnitCollision, TestAI, TestCampaigns,
+TestFoodSystem, TestIntegration, TestEdgeCases, TestDiplomacy,
+TestWorldData, TestWorldMap, TestImports, TestWorldMapTopology,
+TestWorldMapInit, TestMinimax (9)</code></pre>
       </div>
     </section>
 

@@ -19,10 +19,13 @@
       </a>
       <nav class="nav">
         <a href="#features">Мүмкіндіктер</a>
+        <a href="#units">Юниттер</a>
         <a href="#campaigns">Кампаниялар</a>
         <a href="#controls">Басқару</a>
         <a href="#ai">ИИ тақырыптары</a>
+        <a href="#aidetail">ИИ тереңірек</a>
         <a href="#architecture">Архитектура</a>
+        <a href="#testingdetail">Тестілеу</a>
         <a href="#stack">Стек</a>
         <a href="#run">Іске қосу</a>
         <a href="#demo">Демо</a>
@@ -168,6 +171,63 @@ diplomacy.py     WAR/NEUTRAL/FRIENDLY/ALLIANCE</code></pre>
           <div class="card"><p>Әлем картасы көрінісі (орынбасар)</p></div>
           <div class="card"><p>Ауылды басып алу (орынбасар)</p></div>
         </div>
+      </div>
+    </section>
+
+
+    <section id="units" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Юнит статистикасы</h2>
+        <p class="section__sub">Типтік артықшылық матрицасы бар үш юнит түрі.</p>
+        <pre class="code"><code>Түрі        HP   Жылд.  Шабуыл  Қашық.  Артықшылық
+Жаяу әскер  500  1.8    8       1.2     теңгерімді
+Атты әскер  350  3.2    14      1.4     Садақшыларды жеңеді (1.5x)
+Садақшы     280  1.5    6       5.0     қашықтан атады</code></pre>
+      </div>
+    </section>
+
+    <section id="aidetail" class="section">
+      <div class="container">
+        <h2 class="section__title">ИИ тереңірек</h2>
+        <p class="section__sub">Силлабустың әр тақырыбы кодта қалай іске асырылған.</p>
+        <div class="grid grid--3">
+          <article class="card">
+            <h3>A* іздеу</h3>
+            <p>Ландшафт құнын ескеретін, диагональ қозғалыс, тауды айналып өту және көпір арқылы өту бар торлы A*. Юнит соқтығысуын push-apart арқылы ескереді.</p>
+          </article>
+          <article class="card">
+            <h3>Күй машинасы</h3>
+            <p>Күйлер: Idle, Group Up, Move, Hold, Attack, Flank, Capture, Retreat. Жаяу әскер шабуыл алдында топтасады, атты әскер қапталдайды, садақшылар орында тұрады.</p>
+          </article>
+          <article class="card">
+            <h3>Minimax + Alpha-Beta</h3>
+            <p>Қарсыластық мақсат таңдау: ИИ қарсылас ең жақсы қарсы шабуылды таңдайды деп болжайды. Alpha-Beta beta &lt;= alpha болғанда бұтақтарды қысқартады.</p>
+          </article>
+          <article class="card">
+            <h3>Ауылды басып алу</h3>
+            <p>Юнитті ауылға жылжытып басып алу. ИИ экономикалық артықшылық үшін бейтарап/жау ауылдарын бірінші кезекте алады.</p>
+          </article>
+          <article class="card">
+            <h3>Шегіну логикасы</h3>
+            <p>Юниттер 35% денсаулықтан төмен болғанда шегінеді, шектеулі рұқсатпен, содан кейін қайта кіреді. Тұрақты шегінуді және шексіз шайқасты болдырмайды.</p>
+          </article>
+          <article class="card">
+            <h3>Әлем картасы ИИ</h3>
+            <p>Жау генералдары әр кезекте автономды қозғалады және шабуылдайды. Бейтарап аумақты авто-басып алу, жау аумағында авто-шайқас.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testingdetail" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Тестілеу құрылымы</h2>
+        <p class="section__sub">Юнит, интеграция және шеткі жағдайлар бойынша 924 тест.</p>
+        <pre class="code"><code>TestConfig, TestTacticalMap, TestVillages, TestPathfinding,
+TestUnit, TestUnitCollision, TestAI, TestCampaigns,
+TestFoodSystem, TestIntegration, TestEdgeCases, TestDiplomacy,
+TestWorldData, TestWorldMap, TestImports, TestWorldMapTopology,
+TestWorldMapInit, TestMinimax (9)</code></pre>
       </div>
     </section>
 
