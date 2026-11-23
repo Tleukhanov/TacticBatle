@@ -19,7 +19,10 @@
       </a>
       <nav class="nav">
         <a href="#features">Мүмкіндіктер</a>
+        <a href="#campaigns">Кампаниялар</a>
+        <a href="#controls">Басқару</a>
         <a href="#ai">ИИ тақырыптары</a>
+        <a href="#architecture">Архитектура</a>
         <a href="#stack">Стек</a>
         <a href="#run">Іске қосу</a>
         <a href="#demo">Демо</a>
@@ -104,6 +107,66 @@
             <h3>Docker дайын</h3>
             <p>Кез келген платформада X11 forward немесе headless режим арқылы GUI.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="campaigns" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Кампания миссиялары</h2>
+        <p class="section__sub">Өзіндік ландшафт пен мақсаты бар 4 қолмен жасалған миссия.</p>
+        <div class="grid grid--3">
+          <article class="card card--dark"><h3>1. Көпір шайқасы</h3><p>Өзен мен тау қапталдары бар стратегиялық көпір үшін қорғаныс/шабуыл.</p></article>
+          <article class="card card--dark"><h3>2. Өлім аңғары</h3><p>Тар тау шатқалы, тар жолдармен өту.</p></article>
+          <article class="card card--dark"><h3>3. Өзен бекінісі</h3><p>Өзен мен тау қорғанысының артындағы жау бекінісіне шабуыл.</p></article>
+          <article class="card card--dark"><h3>4. Ауылдар</h3><p>Экономикалық артықшылық үшін 6 ауылды басып алып ұстау.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="section">
+      <div class="container">
+        <h2 class="section__title">Басқару</h2>
+        <p class="section__sub">RTS стиліндегі пернетақта және тышқан.</p>
+        <div class="grid grid--3">
+          <article class="card"><h3>Таңдау</h3><p>Сол жақ батырма таңдау, Shift+батырма қосу, қораппен таңдау, қос басу түр бойынша.</p></article>
+          <article class="card"><h3>Бұйрықтар</h3><p>Оң жақ батырма қозғалу/шабуыл. A шабуыл-қозғалыс, G фокус, H ұстау, F қорғаныс, S тоқтату.</p></article>
+          <article class="card"><h3>Топтар</h3><p>Ctrl+1..9 топ тағайындау, 1..9 қайта шақыру, Ctrl+0 ұмыту.</p></article>
+          <article class="card"><h3>Әлем картасы</h3><p>Сол жақ батырма генералды таңдау/жылжыту, Space кезек аяқтау, Tab дипломатия, WASD айналдыру.</p></article>
+          <article class="card"><h3>Көрініс</h3><p>Space қашықтық көрсету, R қайта бастау, N келесі миссия, Esc таңдаудан шығу.</p></article>
+          <article class="card"><h3>Экономика</h3><p>Әр ауыл 20 тамақ/сек, юнит 5 тамақ/сек, шек 1000.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Архитектура</h2>
+        <p class="section__sub">MVC бөлінісі: config, map, units, AI, engine, pathfinding тәуелсіз модульдер.</p>
+        <pre class="code"><code>config.py        тұрақтылар, enum, түстер, юнит статистикасы, шайқас матрицасы
+map.py           TacticalMap: тайл торы, ландшафт, ауылдар
+pathfinding.py   ландшафт құнын ескеретін A*
+units.py         Unit: соқтығысу, pathfinder, шайқас
+ai.py            UnitAI + AIController (FSM + Minimax мақсат таңдау)
+minimax.py       Minimax + Alpha-Beta (4-апта)
+engine.py        ойын циклі, көп таңдау, тамақ, ауыл, HUD
+main.py / menu   кіру нүктесі, мәзірлер, кампания таңдау
+campaigns.py     4 миссия анықтамасы
+world_data.py    50 провинция, 3 ұлт, өзендер, граф
+world_map.py     полигон көрсету, қозғалыс, авто-басып алу/шайқас
+diplomacy.py     WAR/NEUTRAL/FRIENDLY/ALLIANCE</code></pre>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="container">
+        <h2 class="section__title">Скриншоттар</h2>
+        <p class="section__sub"><code>docs/screenshots/</code> қалтасына PNG файлдарын қойыңыз — олар осында пайда болады.</p>
+        <div class="grid grid--3">
+          <div class="card"><p>Тактикалық шайқас көрінісі (орынбасар)</p></div>
+          <div class="card"><p>Әлем картасы көрінісі (орынбасар)</p></div>
+          <div class="card"><p>Ауылды басып алу (орынбасар)</p></div>
         </div>
       </div>
     </section>

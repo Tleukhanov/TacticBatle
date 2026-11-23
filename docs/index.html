@@ -19,7 +19,10 @@
       </a>
       <nav class="nav">
         <a href="#features">Features</a>
+        <a href="#campaigns">Campaigns</a>
+        <a href="#controls">Controls</a>
         <a href="#ai">AI Topics</a>
+        <a href="#architecture">Architecture</a>
         <a href="#stack">Stack</a>
         <a href="#run">Run</a>
         <a href="#demo">Demo</a>
@@ -109,6 +112,66 @@
             <h3>Docker Ready</h3>
             <p>GUI via X11 forwarding or headless mode for CI and testing on any platform.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="campaigns" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Campaign Missions</h2>
+        <p class="section__sub">4 handcrafted missions with unique terrain and objectives.</p>
+        <div class="grid grid--3">
+          <article class="card card--dark"><h3>1. Battle at the Bridge</h3><p>Defend or assault a strategic bridge crossing over a river with mountain flanks.</p></article>
+          <article class="card card--dark"><h3>2. Valley of Death</h3><p>Navigate a narrow mountain canyon with chokepoints.</p></article>
+          <article class="card card--dark"><h3>3. River Fortress</h3><p>Assault an enemy fortress behind river and mountain defenses.</p></article>
+          <article class="card card--dark"><h3>4. Villages</h3><p>Capture and hold 6 villages to build an economic advantage.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="section">
+      <div class="container">
+        <h2 class="section__title">Controls</h2>
+        <p class="section__sub">RTS-style keyboard and mouse.</p>
+        <div class="grid grid--3">
+          <article class="card"><h3>Select</h3><p>Left click select, Shift+click add, drag box, double click same type, Ctrl+A all.</p></article>
+          <article class="card"><h3>Orders</h3><p>Right click move/attack. Keys: A attack-move, G focus, H hold, F defend, S stop.</p></article>
+          <article class="card"><h3>Groups</h3><p>Ctrl+1..9 assign control group, 1..9 recall, Ctrl+0 forget all.</p></article>
+          <article class="card"><h3>World Map</h3><p>Left click select/move general, Space end turn, Tab diplomacy, WASD scroll.</p></article>
+          <article class="card"><h3>View</h3><p>Space toggle ranges, R restart, N next mission, Esc deselect/quit.</p></article>
+          <article class="card"><h3>Economy</h3><p>Each village gives 20 food/sec, each unit costs 5 food/sec, cap 1000.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section section--dark">
+      <div class="container">
+        <h2 class="section__title">Architecture</h2>
+        <p class="section__sub">MVC separation: config, map, units, AI, engine, pathfinding are independent modules.</p>
+        <pre class="code"><code>config.py        constants, enums, colors, unit stats, combat matrix
+map.py           TacticalMap: tile grid, terrain, villages
+pathfinding.py   A* with terrain cost weighting
+units.py         Unit: collision, pathfinder, combat
+ai.py            UnitAI + AIController (FSM + Minimax target selection)
+minimax.py       Minimax + Alpha-Beta (Week 4)
+engine.py        game loop, multi-select, food, villages, HUD
+main.py / menu   entry point, menus, campaign select
+campaigns.py     4 mission definitions
+world_data.py    50 provinces, 3 nations, rivers, graph
+world_map.py     polygon rendering, movement, auto-capture/battle
+diplomacy.py     WAR/NEUTRAL/FRIENDLY/ALLIANCE</code></pre>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="container">
+        <h2 class="section__title">Screenshots</h2>
+        <p class="section__sub">Drop PNG files into <code>docs/screenshots/</code> and they will appear here.</p>
+        <div class="grid grid--3">
+          <div class="card"><p>Tactical battle view (placeholder)</p></div>
+          <div class="card"><p>World map view (placeholder)</p></div>
+          <div class="card"><p>Village capture (placeholder)</p></div>
         </div>
       </div>
     </section>
