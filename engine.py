@@ -133,7 +133,8 @@ def _make_world_war_map():
 
 class GameEngine:
     def __init__(self, mission: Optional[int] = None,
-                 session: Optional[WarSession] = None):
+                 session: Optional[WarSession] = None,
+                 use_minimax_ai: bool = True):
         """Тактический бой.
 
         Два необязательных параметра задают, откуда взялись войска и куда
@@ -152,6 +153,7 @@ class GameEngine:
         pygame.init()
         self.mission = mission
         self.session = session
+        self.use_minimax_ai = use_minimax_ai
         # квитанция для мира; заполняется один раз в конце боя по сессии
         self.outcome: Optional[BattleOutcome] = None
         pygame.display.set_caption("Tactic Battle - Napoleonic Simulator")
@@ -242,7 +244,7 @@ class GameEngine:
             unit._pathfinder = self.pathfinder
 
         for unit in self.red_units:
-            self.ai_controller.register_unit(unit)
+            self.ai_controller.register_unit(unit, use_minimax=self.use_minimax_ai)
 
     def _setup_campaign_units(self):
         for type_str, col, row in self._mission_config.blue_units:
@@ -1173,7 +1175,7 @@ class GameEngine:
         self.all_units.append(new_unit)
 
         if team == Team.RED:
-            self.ai_controller.register_unit(new_unit)
+            self.ai_controller.register_unit(new_unit, use_minimax=self.use_minimax_ai)
         return new_unit
 
     def _check_game_over(self):

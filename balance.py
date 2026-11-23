@@ -234,7 +234,7 @@ def _build_engine(spec: BattleSpec) -> GameEngine:
     копией одного и того же боя.
     """
     random.seed(int(spec.seed))
-    engine = GameEngine(session=_make_session(spec))
+    engine = GameEngine(session=_make_session(spec), use_minimax_ai=False)
     _jitter_positions(engine, spec)
     return engine
 

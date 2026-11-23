@@ -4,6 +4,7 @@ from typing import List, Optional, Tuple
 from config import AIState, Team, CELL_SIZE, TerrainType, UnitType
 from units import Unit
 from pathfinding import Pathfinder
+from minimax import AdversarialTargetSelector
 
 GROUP_UP_RANGE = CELL_SIZE * 8
 HOLD_DISTANCE = CELL_SIZE * 4
@@ -30,9 +31,10 @@ ADVANCE_SAFE_DIST = CELL_SIZE * 12
 
 
 class UnitAI:
-    def __init__(self, unit: Unit, pathfinder: Pathfinder):
+    def __init__(self, unit: Unit, pathfinder: Pathfinder, use_minimax: bool = False):
         self.unit = unit
         self.pathfinder = pathfinder
+        self.use_minimax = use_minimax
         self.state = AIState.IDLE
         self._think_timer = 0.0
         self._think_interval = 0.8
@@ -46,6 +48,9 @@ class UnitAI:
         self._group_up_target: Optional[Tuple[float, float]] = None
         self._patrol_points: List[Tuple[float, float]] = []
         self._patrol_index = 0
+        # Adversarial search (Minimax + Alpha-Beta) used to pick a target
+        # when several enemies are in play (AI Fundamentals, Week 4).
+        self._target_selector = AdversarialTargetSelector()
 
     def update(self, dt: float, enemies: List[Unit], allies: List[Unit],
                villages: Optional[List[Tuple[int, int]]] = None,
@@ -77,7 +82,7 @@ class UnitAI:
             self._do_retreat(alive_enemies)
             return
 
-        nearest_enemy = self._find_nearest_enemy(alive_enemies)
+        nearest_enemy = self._choose_target(alive_enemies, alive_allies)
 
         if self.state == AIState.IDLE:
             self._do_idle_tactical(nearest_enemy, alive_allies, alive_enemies,
@@ -438,6 +443,14 @@ class UnitAI:
                 nearest = e
         return nearest
 
+    def _choose_target(self, enemies: List[Unit], allies: List[Unit]) -> Optional[Unit]:
+        alive = [e for e in enemies if e.alive]
+        if not alive:
+            return None
+        if len(alive) == 1 or not self.use_minimax:
+            return self._find_nearest_enemy(alive)
+        return self._target_selector.choose(self.unit, alive, allies)
+
     def _count_nearby_allies(self, allies: List[Unit], unit: Unit,
                              range_dist: float) -> int:
         count = 0
@@ -461,8 +474,8 @@ class AIController:
         self.pathfinder = pathfinder
         self._unit_ais: List[UnitAI] = []
 
-    def register_unit(self, unit: Unit):
-        ai = UnitAI(unit, self.pathfinder)
+    def register_unit(self, unit: Unit, use_minimax: bool = False):
+        ai = UnitAI(unit, self.pathfinder, use_minimax=use_minimax)
         self._unit_ais.append(ai)
 
     def remove_dead(self):

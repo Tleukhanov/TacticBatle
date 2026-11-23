@@ -73,6 +73,7 @@ Napoleonic-style top-down 2D tactical battle simulator with RTS controls, A\* pa
 - **Retreat Logic** — units flee when below 35% health
 - **A\* Pathfinding** — AI navigates around terrain when pursuing targets
 - **State Machine** — Idle / Group Up / Move / Hold / Attack / Flank / Capture / Retreat
+- **Adversarial Search** — Minimax with Alpha-Beta pruning picks the best enemy target (AI Fundamentals, Week 4)
 - **Modular Design** — swap the AI controller with an ML agent via the `AIController` interface
 
 ### Architecture
@@ -91,7 +92,7 @@ Napoleonic-style top-down 2D tactical battle simulator with RTS controls, A\* pa
 | Language | Python 3.10+ |
 | Graphics | Pygame-CE 2.5 |
 | Pathfinding | A\* with terrain cost weighting |
-| AI | Finite State Machine (tactical combat + world map) |
+| AI | Finite State Machine (tactical combat + world map) + Minimax/Alpha-Beta target selection |
 | Diplomacy | WAR / NEUTRAL / FRIENDLY / ALLIANCE with accept/reject |
 | Testing | pytest (149 tests) |
 | Container | Docker + docker-compose |
@@ -172,6 +173,7 @@ My_mvp_game/
 ├── pathfinding.py       # A* pathfinding with terrain cost awareness
 ├── units.py             # Unit class with collision, pathfinder, combat
 ├── ai.py                # State-machine AI (UnitAI + AIController) with tactical behavior
+├── minimax.py           # Adversarial search: Minimax + Alpha-Beta target selection (Week 4)
 ├── engine.py            # Game loop, multi-select, food system, village capture, HUD
 ├── main.py              # Entry point with menu
 ├── menu.py              # Main menu, campaign select, victory screen
@@ -180,7 +182,8 @@ My_mvp_game/
 ├── world_map.py         # World map screen: polygon rendering, province movement, auto-capture/battle
 ├── diplomacy.py         # WAR/NEUTRAL/FRIENDLY/ALLIANCE diplomacy system
 ├── requirements.txt     # pygame-ce dependency
-├── test_tactics.py      # 149 unit, integration, and edge-case tests
+├── test_tactics.py      # unit, integration, and edge-case tests
+├── test_minimax.py      # adversarial search (Minimax + Alpha-Beta) tests
 ├── Dockerfile           # Docker image (X11 + dummy driver support)
 ├── docker-compose.yml   # Compose profiles: gui + headless
 └── README.md
@@ -201,8 +204,8 @@ My_mvp_game/
 ## Testing
 
 ```bash
-# Run all 149 tests
-python -m pytest test_tactics.py -v
+# Run all tests (tactics + minimax)
+python -m pytest -v
 
 # Test categories:
 # - TestConfig (9)              — constants, enums, combat matrix, food constants
@@ -220,6 +223,7 @@ python -m pytest test_tactics.py -v
 # - TestWorldData (10)          — nations, regions, generals, validity checks
 # - TestWorldMap (6)            — general/region positions, troops, colors
 # - TestImports (10)            — all modules import cleanly
+# - TestMinimax (9)             — Minimax + Alpha-Beta target selection (Week 4)
 # - TestWorldMapTopology (15)   — province count, polygons, centroids, rivers, bridges, connections
 # - TestWorldMapInit (1)        — WorldMapScreen creates without crash
 ```
