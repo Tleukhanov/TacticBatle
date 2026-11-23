@@ -4,9 +4,12 @@ const videoObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       const v = e.target;
+      const wrap = v.closest('.video-wrap');
       if (v.dataset.src && !v.src) {
         v.src = v.dataset.src;
         v.load();
+        v.addEventListener('canplay', () => { if (wrap) wrap.classList.add('loaded'); }, { once: true });
+        v.addEventListener('error', () => { if (wrap) wrap.classList.add('loaded'); }, { once: true });
       }
       videoObserver.unobserve(v);
     }
