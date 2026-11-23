@@ -67,11 +67,10 @@ h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; margin: 14px 0; lette
 .hero__stats strong { font-size: 26px; color: var(--green-dark); }
 .hero__stats span { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; }
 
-.battlefield {
-  position: relative; width: 100%; aspect-ratio: 4/3;
-  background: linear-gradient(135deg, #f3fdf6, #e9f9ef);
+.map {
+  width: 100%; height: auto; display: block;
   border: 2px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; box-shadow: var(--shadow);
+  box-shadow: var(--shadow); background: #e9f9ef;
 }
 .unit {
   position: absolute; width: 26px; height: 26px; border-radius: 6px;
